@@ -16,8 +16,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - uses: actions-rs/install@v0.1
+      with:
+        crate: cargo-tarpaulin
+        version: latest
+    - uses: actions-rs/install@v0.1
+      with:
+        crate: cargo-audit
+        version: latest
     - name: Code coverage
       run: cargo tarpaulin --ignore-tests
+    - name: Code linting
+      run: cargo clippy
+    - name: Code formatting
+      run: cargo fmt -- --check
+    - name: Code audit
+      run: cargo audit
     - name: Build
       run: cargo build --verbose
     - name: Run tests

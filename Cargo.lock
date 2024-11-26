@@ -1781,6 +1781,7 @@ dependencies = [
  "actix-web",
  "http",
  "reqwest",
+ "serde",
  "tokio",
 ]
 
